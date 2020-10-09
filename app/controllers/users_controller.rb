@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
+  # before_action :authenticate_user!, except: [:index]
+  def index
+    @users = User.all    
+  end
+  
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-    if @user.after_save
+    if @user.save
       redirect_to user_path(@user.id)
     else
       render :new
