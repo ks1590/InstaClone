@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :users do
     post :confirm, on: :collection
-    post :member, on: :member
+    post :account, on: :member
   end
 end

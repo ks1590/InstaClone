@@ -6,7 +6,6 @@
     <% if user.image && user.image.url %>
       <%= image_tag user.image.url, class: "img-circle" %> 
     <% end %>
-    <%# <% if user.id == current_user.id %> %>
       <div class="post-links">                    
         <%= link_to edit_user_path(user.id) do %>
           <span class="glyphicon glyphicon-pencil g-links" aria-hidden="true"></span>                
@@ -15,6 +14,5 @@
           <span class="glyphicon glyphicon-trash g-links" aria-hidden="true"></span> 
         <% end %>        
       </div>
-    <%# <% end %>
   </div>
 <% end %>

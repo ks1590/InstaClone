@@ -28,13 +28,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def member
+  def account
     @user = User.find(params[:id])
   end
 
   def confirm
-    @user = current_user.users.build(user_params)
-    render :new if @user.invalid?
   end
 
   def update
@@ -45,6 +43,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path
   end
 
   private
