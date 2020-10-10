@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def account
-    @user = User.find(user_params)
+    @user = User.new(user_params)
   end
 
   def confirm
