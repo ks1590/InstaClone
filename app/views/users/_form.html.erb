@@ -1,0 +1,38 @@
+<%= form_with(model: @user, local: true, url:member_user_path) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>  
+    <%= f.text_field :name, class: 'form-control input-lg',:placeholder => "名前"%>
+    <%= f.hidden_field :name%>
+    <%= f.text_field :email, class: 'form-control input-lg',:placeholder => "メールアドレス"%>
+    <%= f.hidden_field :email%>
+    <div class="accbox">
+    <label for="label1">パスワードを変更するかたはこちら</label>
+    <input type="checkbox" id="label1" class="cssacc" />
+    <div class="accshow">
+      <div class="form-group">
+        新しいパスワード<br>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+  
+      <div class="form-group">
+        新しいパスワードを再入力<br>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+    <%= image_tag @user.image.url, class: "img-circle" %> 
+    <%= f.file_field(:image,{:class => 'btn-primary'})  %>
+    <%= f.hidden_field :image_cache　%>
+    <div class="text-right">
+      <%= link_to '送信', member_user_path(@user.id), class:"btn btn-warning" %>
+      <%= link_to '戻る', users_path, class:"btn btn-warning" %>
+    <div>
+<% end %>

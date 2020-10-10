@@ -21,9 +21,35 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def edit
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to users_path
+    end
+  end
+
+  def member
+    @user = User.find(params[:id])
+  end
+
+  def confirm
+    @user = current_user.users.build(user_params)
+    render :new if @user.invalid?
+  end
+
+  def update
+    @user = current_user.users.build(user_params)
+    if @user.update(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password,
+    params.require(:user).permit(:id, :name, :email, :password,
                                 :password_confirmation, :image, :image_cache)
   end
 end

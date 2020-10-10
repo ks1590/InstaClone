@@ -2,6 +2,19 @@
   <div class= "col-sm-10">
     <p class="post-content"><%= user.name %></p>
     <p class="post-content"><%= user.email %></p>
-    <p><%= image_tag(user.image.thumb.url ) if user.image && user.image.url %></p>
+    
+    <% if user.image && user.image.url %>
+      <%= image_tag user.image.url, class: "img-circle" %> 
+    <% end %>
+    <%# <% if user.id == current_user.id %> %>
+      <div class="post-links">                    
+        <%= link_to edit_user_path(user.id) do %>
+          <span class="glyphicon glyphicon-pencil g-links" aria-hidden="true"></span>                
+        <% end %>
+        <%= link_to user_path(user.id), method: :delete ,data: { confirm: '本当に削除してよろしいですか？' } do %>
+          <span class="glyphicon glyphicon-trash g-links" aria-hidden="true"></span> 
+        <% end %>        
+      </div>
+    <%# <% end %>
   </div>
 <% end %>
