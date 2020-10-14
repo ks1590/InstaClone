@@ -8,13 +8,29 @@
         <%# # if post.user.image && post.user.image.url %>
       </div>
       <div class= "col-sm-1">
-        <%= post.user.name %>
+        <%= link_to post_path(post) do %>
+          <%= post.user.name %>
+        <% end %>
       </div>
       <div class= "col-sm-10">
         <p class="post-content"><%= post.title %></p>
         <p class="post-content"><%= post.content %></p>
         <%= image_tag(post.image.url) if post.image && post.image.url %>
+
         <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true" style = "font-size: 20px"></span></p>  
+        
+        <% if current_user.already_favorited?(post) %>
+          <%= link_to post_favorites_path(post), method: :delete do %>
+            <i class="fas fa-heart"></i>
+          <% end %>
+          <%= post.favorites.count %>
+        <% else %>
+          <%= link_to post_favorites_path(post), method: :post do %>
+            <i class="far fa-heart"></i>
+          <% end %>
+          <%= post.favorites.count %>
+        <% end %>
+
         <% if post.user.id == current_user.id %>
           <div class="post-links">                    
             <%= link_to edit_post_path(post.id) do %>
