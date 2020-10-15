@@ -13,7 +13,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process resize_to_limit: [500, 400]
+  # process resize_to_limit: [1000, 1000]
 
   # サムネイルを生成する設定
   version :thumb do
