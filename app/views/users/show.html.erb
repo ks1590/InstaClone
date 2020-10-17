@@ -12,6 +12,13 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+<div>
+  <%= link_to 'favorites', [@user, :favorites]  %>
+</div>
+<% if logged_in? %>
+  <div>
+    <%= link_to 'Edit', edit_user_path(@user) %>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_user_path(@user) %>
 <%= link_to 'Back', users_path %>

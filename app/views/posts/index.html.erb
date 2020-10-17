@@ -22,7 +22,7 @@
             <% if post.user.id != current_user.id %>
               <% if current_user.already_favorited?(post) %>
                 <%= link_to post_favorites_path(post), method: :delete do %>
-                  <i class="fas fa-heart"></i>
+                  <i class="fas fa-heart"></i>              
                 <% end %>
                 <%= post.favorites.count %>
               <% else %>
@@ -30,7 +30,7 @@
                   <i class="far fa-heart"></i>
                 <% end %>
                 <%= post.favorites.count %>
-              <% end %>
+              <% end %>        
             <% end %>
           
             <% if post.user.id == current_user.id %>
@@ -40,7 +40,7 @@
                 <% end %>
                 <%= link_to post_path(post.id), method: :delete ,data: { confirm: '本当に削除してよろしいですか？' } do %>
                     <span class="glyphicon glyphicon-trash g-links" aria-hidden="true"></span> 
-                <% end %>        
+                <% end %>
               </div>
             <% end %>
           <div>
@@ -48,6 +48,7 @@
             <div class="post-text">
               <p><%= post.title %></p>
               <p><%= post.content %></p>
+              <%= post.created_at.strftime("投稿日：%Y年%m月%d日") %>
             </div>
           </div>                        
         </div>

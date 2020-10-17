@@ -1,4 +1,13 @@
 class FavoritesController < ApplicationController
+  def show
+    @favorites = current_user.favorites
+    # @user = User.find(params[:id])
+  end
+
+  def index
+    @posts = Post.joins(:favorites).where(favorites:{user_id: params[:user_id]})
+  end 
+  
   def create
     @favorite = current_user.favorites.create(post_id: params[:post_id])
     redirect_back(fallback_location: root_path)
