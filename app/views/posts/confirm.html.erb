@@ -5,8 +5,10 @@
     <%= f.hidden_field :title %>
     <p class="post-content"><%= @post.content %></p>
     <%= f.hidden_field :content %>
-    <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
-    <%= f.hidden_field :image_cache %>
+    <% if @post.image && @post.image.url %>
+      <%= image_tag @post.image.url(:thumb)  %>
+      <%= f.hidden_field :image_cache %>
+    <% end %>
   </div>
   <%= f.submit("投稿する", class:"btn btn-primary") %>
 <% end %>
