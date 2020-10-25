@@ -1,12 +1,6 @@
-<div class="row">
-	<div class="col-md-6">
-		<ul class="media-list">
-			<li class="media">
-				<img class="media-object media-left　img-responsive"  src="/sns.jpg">
-			</li>
-		</ul>
-	</div>
-	<div class = "col-md-offset-1 col-md-5">
+<%# <div class="row"> %>
+	<%# <div class = "col-xs-offset-4 col-xs-4"> %>
+	<div class="form">
 		<% if @user.errors.any? %>
 			<div id="error_explanation">
 				<h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
@@ -17,13 +11,19 @@
 				</ul>
 			</div>
 		<% end %>
-		<%= form_with(model: @user, local: true) do |f| %>
-			<%= f.text_field :name ,class: "form-group form-control form-control-lg",:placeholder => "名前" %>
-			<%= f.email_field :email ,class: "form-group form-control form-control-lg",:placeholder => "メールアドレス" %>
-			<%= f.password_field :password ,class: "form-group form-control form-control-lg", :placeholder => "パスワード" %>
-			<%= f.password_field :password_confirmation, class: "form-group form-control form-control-lg", :placeholder => "パスワード（再入力）" %>
-			<%= f.submit "新しいアカウントを作成", class:"btn btn-primary btn-lg btn-block" %>
-		<% end %><hr>
-		<%= link_to "ログイン", new_session_path, class:"btn btn-success btn-lg btn-block"  %>
+		
+		<div class="side">
+		</div>
+			<%= form_with(model: @user, local: true) do |f| %>
+				<h1 class="logo-name">Instantgram</h1>
+				<p>登録して友達の写真や動画をチェックしよう</p>
+				<%= f.text_field :name ,class: "form-group form-control form-control-lg",:placeholder => "フルネーム" %>
+				<%= f.email_field :email ,class: "form-group form-control form-control-lg",:placeholder => "メールアドレス" %>
+				<%= f.password_field :password ,class: "form-group form-control form-control-lg", :placeholder => "パスワード" %>
+				<%= f.password_field :password_confirmation, class: "form-group form-control form-control-lg", :placeholder => "パスワード（確認用）" %>
+				<%= f.submit "登録する", class:"btn btn-primary btn-md btn-block" %>
+			<% end %><hr><br>
+			<p>アカウントをお持ちですか？</p>
+			<%= link_to "ログインする", new_session_path, class:"btn btn-success btn-md btn-block"  %>
 	</div>
-</div>
+<%# </div> %>
